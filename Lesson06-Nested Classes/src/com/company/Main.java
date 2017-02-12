@@ -12,6 +12,15 @@ public class Main {
         Circle.Point point2=c.new Point(87,32);
         c.setCenter(point1);
 
+        Dog d= new Dog(){//אומר שיצרתי אובייקט ממחלקה שיורשת מדוג מחלקה ללא שם ונדרוס לה את המתודה בארק
+
+            @Override
+            void bark() {
+                System.out.println("boof boof");
+            }
+        };
+        d.bark();
+
     }
     //אילוף כלבים
     static Dog trainDog(Dog d){
