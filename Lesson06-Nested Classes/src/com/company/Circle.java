@@ -15,10 +15,10 @@ package com.company;
  */
 public class Circle {
 
-
     private Point center;
     private int radius;
     private int z;
+    
 
     public class Point{
         private int x,y;
