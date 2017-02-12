@@ -12,6 +12,8 @@ public class Main {
         Circle.Point point2=c.new Point(87,32);
         c.setCenter(point1);
 
+        //4.Anonymous inner class
+
         Dog d= new Dog(){//אומר שיצרתי אובייקט ממחלקה שיורשת מדוג מחלקה ללא שם ונדרוס לה את המתודה בארק
 
             @Override
@@ -20,6 +22,10 @@ public class Main {
             }
         };
         d.bark();
+
+        Dog d2=new Dog();
+        d2.bark();
+
 
     }
     //אילוף כלבים
