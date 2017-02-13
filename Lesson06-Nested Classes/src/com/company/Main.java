@@ -73,7 +73,7 @@ public class Main {
                break;// כאן לא צריך דיפולט כי עשינו את כל המקרים של האינם
        }
 
-        System.out.println(myPrinterType);//מדפיס כאן ישר את הלאסר ללא צורך לעשות אינם
+        System.out.println(myPrinterType);//מדפיס כאן ישר את הלאסר ללא צורך לעשות סוויץ
 
       // Car bmw= new Car(); אי אפשר לגשת לקונסטרקטור כי הוא פרייבט
 
