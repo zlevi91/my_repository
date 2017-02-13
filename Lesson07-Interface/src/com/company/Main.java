@@ -2,6 +2,8 @@ package com.company;
 //האינטרפס מתאים למבחן האיז אה.. וגם מתאים לאינסטנס אוף- בודק האם נעזה דאוןקאסט למחלקה מסויימת האם זה יכשל או לא
 //
 
+import java.security.InvalidParameterException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -84,9 +86,44 @@ interface Edible{
     void eat (String foo);
 }
 //אינטרפייס שגאווה כתבו
-
-interface Comparable{
+//
+/*interface Comparable{
     public int compareTo(Object obj);//למה התכוון המשורר במתודה הזאת? התכוון שיוחזר מהמתודה מספר 1,0,-1
     // אם האובייקט שעליו הופעלה המתודה יותר גדול יוחזר 1 אם שווים יוחזר 0 ואם הוא קטן יוחזר -1
+}*/
+
+class Point implements Comparable{
+    int x,y;
+
+    @Override
+    public int compareTo(Object o) {
+        if(o== null || !(o instanceof Point))
+            throw new InvalidParameterException("must sent a valid point");
+        if(o==this)
+            return 0;
+        Point other=(Point)o;
+        double d1=this.distanceFromOrigin();
+        double d2=other.distanceFromOrigin();
+        if(d1>d2)
+            return 1;
+        else if(d1<d2)
+            return -1;
+        if(this.x>=0){
+            if(other.x>=0) {//אם שני האיקסים חיוביים
+                if (this.y >= 0 && other.y >= 0) {//וגם שני הוויים חיוביים
+                    if (this.y >= other.y)
+                        return 1;
+                    else
+                        return -1;
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    double distanceFromOrigin(){
+        return Math.sqrt(x*x + y*y);//המרחק מראשית הצירים
+    }
 }
 
