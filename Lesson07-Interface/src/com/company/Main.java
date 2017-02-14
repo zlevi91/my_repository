@@ -52,7 +52,38 @@ public class Main {
         list.add(90);
         list.add(87);
         list.add(78);
+        list.remove(2);
         System.out.println(list);
+
+        LinkedListElad list1=new LinkedListElad();
+        list1.add(90);
+        list1.add(87);
+        list1.add(78);
+        //זמן ריצה גרוע, כמו סדרה חשבונית לכל איבר הוא מחשב שוב מהתחלה עד אותו איבר
+       /* int size=list1.size();
+        int max=list1.get(0);
+        for (int i = 1; i <size ; i++) {
+            int value=list.get(i);
+            if(value>max)
+                max=list1.get(i);
+        }
+        System.out.println(max);*/
+       //לולאת פוראיצ - רק בלולאה הזאת אפשר לעשות את הקוד הקצר הזה במקום הקוד שאחריו
+        //חייב לממש את שלושת הList, Iterable, Iterator כדי שנוכל לעשות לולאת פוראיצ
+       //int max=list1.get(0);
+       for(Object i:list1){
+           Integer x=(Integer)i;
+           System.out.println(x);
+       }
+
+       //הפור הקודם שקול לקוד הבא מתרגם ע"י הקומפיילר
+        list1.iterator();
+       while (list1.hasNext()){
+           Integer x=(Integer) list1.next();
+           System.out.println(x);
+       }
+
+
 
 
     }
