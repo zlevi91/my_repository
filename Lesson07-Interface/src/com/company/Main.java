@@ -48,6 +48,12 @@ public class Main {
             }
         });
 
+        List list=new LinkedList();
+        list.add(90);
+        list.add(87);
+        list.add(78);
+        System.out.println(list);
+
 
     }
 
@@ -115,7 +121,6 @@ class Cylinder extends Shape implements Rollable{
 
     @Override
     public void roll(float degree) {
-
     }
 }
 interface Edible{
@@ -173,7 +178,6 @@ class Point implements Comparable{
                     return -1;
                 else
                     return 1;
-
             }
         }else {
             //כל מה שעשינו זה תחת העולם של דיס נקודה איקס גדול מ0
@@ -244,7 +248,6 @@ class MotionSensor{
     void detectMotion(){
         for (int i = 0; i <size ; i++) {
             this.listeners[i].motionDetected(123);//תומך בכמה סנסורים
-
         }
     }
     //האינטרפייס הזה נוצר רק בשביל מושיין סנסור, גם מבחוץ אפשר להשתמש בו אבל רק בהקשר של מושן סנסור
