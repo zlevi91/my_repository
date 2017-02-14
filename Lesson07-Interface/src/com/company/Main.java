@@ -2,6 +2,7 @@ package com.company;
 //האינטרפס מתאים למבחן האיז אה.. וגם מתאים לאינסטנס אוף- בודק האם נעזה דאוןקאסט למחלקה מסויימת האם זה יכשל או לא
 //
 
+
 import java.security.InvalidParameterException;
 
 public class Main {
@@ -26,6 +27,27 @@ public class Main {
         for (int i = 0; i <myPoint.length ; i++) {
             System.out.print(myPoint[i]);
         }
+        
+       
+
+        MotionSensor sensor=new MotionSensor();
+        Siren siren= new Siren();
+        sensor.setListener(siren);
+        sensor.detectMotion();//תתחיל לגלות תנועה ואחכ שואלים בשורה למעלה האם יש מישהוא שצריך להודיע לו עלכך
+
+        Police police=new Police();
+        sensor.setListener(police);
+        sensor.detectMotion();
+
+        Button btnLogin= new Button();
+        //מגדירים את המחלקה בתוך הסוגריים (כמו למעלה ששולחים פוליס- אובייקט שכבר קיים) כאן האובייקט לא קיים רק לבאטן רוצים להגיד מה לעשות
+        btnLogin.setListener(new Button.OnClickListener() {//מחלקה אנונימית רק של האובייקט החדש
+            @Override
+            public void onClick(View view) {
+                System.out.println("button clicked");
+            }
+        });
+
 
     }
 
@@ -162,6 +184,115 @@ class Point implements Comparable{
 
     double distanceFromOrigin(){
         return Math.sqrt(x*x + y*y);//המרחק מראשית הצירים
+    }
+}
+
+//listener
+//חיישן תנועה
+//מגדיר אינטרפייס שנקראה מושייןליסנר ויש לו מתודה שמקבלת פרמטר וגם הגדרנו שדה מסוג האינטרפייס
+//זה שרוצה לתת את השירות שמודיע על איוונט מסוים שקרה-
+//ואז שדרכנו את חיישן התנועה שואל האם אי פעם הופעל הסאטטר הזה האם מישהוא שלח ליסנר שהוא לא נאל
+//ז"א שיש מישהוא שמעוניין באינפורמציה ויש מצביע שיש לו את המתודה מושיין דטקטד
+//ואז באה המחלקה סירנה ומימשה את מושיין ליסינר (האינטרפייס)
+//במיין יוצרים אובייקט מסוג גלאי וסירנה ובסנסור שולחים את סירנה ואז אם גילה תנועה מפעיל את הסירנה
+/*class MotionSensor{
+
+    private MotionListener listener;//שדה מסוג האינטרפייס שהוא עצמו הגדיר
+
+    public void setListener(MotionListener listener) {//לא עושים לו גאטטר רק סטאר
+        this.listener = listener;
+    }
+    //הוא נדרך לגלות תנועה- ומגלה תנועה
+    void detectMotion(){
+        if(listener!=null)//שואל האם מישהוא הפעיל את הסאטטר ומעוניין באינפורמציה הזאת- האם התגלתה תנועה
+            listener.motionDetected(123);//עם מידע על הגילוי
+    }
+    //האינטרפייס הזה נוצר רק בשביל מושיין סנסור, גם מבחוץ אפשר להשתמש בו אבל רק בהקשר של מושן סנסור
+    static interface MotionListener{
+        void motionDetected(int sensorId);;
+    }
+}
+//מעוניין לדעת שהיה צריך להפעיל את האזעקה
+class Siren implements MotionSensor.MotionListener{
+
+    @Override
+    public void motionDetected(int sensorId) {
+        System.out.println("alarm!!! motion detected at sensor " + sensorId);
+    }
+}*/
+
+
+//אם יש לנו מצב שרוצה להודיע כמה דברים לדוג הפעלת אזעקה שליחת מסרון
+
+class MotionSensor{
+
+    private MotionListener[] listeners;//שדה מסוג האינטרפייס שהוא עצמו הגדיר מגדירים מערך
+    int size;
+
+    public MotionSensor() {
+        listeners = new MotionListener[10];
+        size = 0;
+    }
+
+    public void setListener(MotionListener listener) {//לא עושים לו גאטטר רק סטאר
+        if(listener==null)
+            return;
+        if (size < this.listeners.length)
+            this.listeners[size++] = listener;
+    }
+    //הוא נדרך לגלות תנועה- ומגלה תנועה
+    void detectMotion(){
+        for (int i = 0; i <size ; i++) {
+            this.listeners[i].motionDetected(123);//תומך בכמה סנסורים
+
+        }
+    }
+    //האינטרפייס הזה נוצר רק בשביל מושיין סנסור, גם מבחוץ אפשר להשתמש בו אבל רק בהקשר של מושן סנסור
+    static interface MotionListener{
+        void motionDetected(int sensorId);;
+    }
+}
+//מעוניין לדעת שהיה צריך להפעיל את האזעקה
+class Siren implements MotionSensor.MotionListener{
+
+    @Override
+    public void motionDetected(int sensorId) {
+        System.out.println("alarm!!! motion detected at sensor " + sensorId);
+    }
+}
+
+
+class Police implements MotionSensor.MotionListener{
+
+    @Override
+    public void motionDetected(int sensorId) {
+        System.out.println("stop!!! ");
+    }
+}
+
+
+class View{
+
+}
+
+//עשו פונקציית כפתור אבל אי אפשר לדעת למה המשתמש ירצה כשילחץ על הכפתור
+class Button extends View{
+
+    private OnClickListener listener;
+
+    public void setListener(OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    //אני לא יודעת מתי לחצו על הכפתור אבל הכפתור יודע מתי לחצו עליו
+    void detectClick(){
+        if(listener!=null)
+            listener.onClick(this);//שולח מצביע לעצמו מתוך מחשבה שיש כמה כפתורים במסך והכפתור חושב שאולי מישהוא שנתן את הליסנר נתן אותו לכמה כפתורים
+
+    }
+
+    interface OnClickListener{
+        void onClick(View view);//
     }
 }
 
