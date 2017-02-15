@@ -91,8 +91,26 @@ public class Main {
        Dog anotherDog=Dog.getDog();
         System.out.println(anotherDog.getName());
 
+        MergeSortLinkList.Node list2=
+                      new MergeSortLinkList.Node(2,
+                              new MergeSortLinkList.Node(7,
+                                      new MergeSortLinkList.Node(18)));
+        // בקונסטרקטור עשינו שמקבל וליו ונקסט- הנקס שמנו את הערך הבא
+        MergeSortLinkList.Node list3=
+                new MergeSortLinkList.Node(5,
+                        new MergeSortLinkList.Node(9,
+                                new MergeSortLinkList.Node(40)));
+        MergeSortLinkList.Node merged=MergeSortLinkList.merge(list2,list3);
+        while (merged!=null){
+            System.out.print(merged.value+ " ");
+            merged=merged.next;
+        }
 
-
+        MergeSortLinkList.Node sorted=MergeSortLinkList.mergeSort(list2);
+        while (sorted!=null) {
+            System.out.print(sorted.value + " ");
+            sorted = sorted.next;
+        }
 
     }
 
