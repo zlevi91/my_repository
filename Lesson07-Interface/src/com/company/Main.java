@@ -36,13 +36,13 @@ public class Main {
         sensor.detectMotion();//תתחיל לגלות תנועה ואחכ שואלים בשורה למעלה האם יש מישהוא שצריך להודיע לו עלכך
 
         Police police=new Police();
-        sensor.setListener(police);
+        sensor.setListener(police);//מכניסים לסנסור ליום שבו התגלתה תנועה ותודיע
         sensor.detectMotion();
 
         Button btnLogin= new Button();
         //מגדירים את המחלקה בתוך הסוגריים (כמו למעלה ששולחים פוליס- אובייקט שכבר קיים) כאן האובייקט לא קיים רק לבאטן רוצים להגיד מה לעשות
         btnLogin.setListener(new Button.OnClickListener() {//מחלקה אנונימית רק של האובייקט החדש
-            @Override
+            @Override//כתובת לאובייקט שמממש את האינטרפייס, נתנו לבאטן מה לעשות כשלוחצים עליו
             public void onClick(View view) {
                 System.out.println("button clicked");
             }
@@ -82,6 +82,14 @@ public class Main {
            Integer x=(Integer) list1.next();
            System.out.println(x);
        }
+
+
+
+       Dog myDog=Dog.getDog();
+       myDog.setName("snoopy");
+
+       Dog anotherDog=Dog.getDog();
+        System.out.println(anotherDog.getName());
 
 
 
@@ -258,10 +266,13 @@ class Siren implements MotionSensor.MotionListener{
 
 
 //אם יש לנו מצב שרוצה להודיע כמה דברים לדוג הפעלת אזעקה שליחת מסרון
+//הוא יודע לגלות תנועה אבל לא יודע מה לעשות עם האינפורמציה הזאת וגם לא מעוניין לדעת
+//פה הוא יודע להוגיע לכמה גורמים שונים שמשהוא קרה
 
 class MotionSensor{
 
     private MotionListener[] listeners;//שדה מסוג האינטרפייס שהוא עצמו הגדיר מגדירים מערך
+    //יכולים להיות מכל מחלקה שהיא אבל הם או האבא שלהם צריך לרשת את האינטרפייס מושייןסנסור
     int size;
 
     public MotionSensor() {
@@ -273,15 +284,17 @@ class MotionSensor{
         if(listener==null)
             return;
         if (size < this.listeners.length)
-            this.listeners[size++] = listener;
+            this.listeners[size++] = listener;//שומר את הפויינטר לאובייקט מסוג מושיין סנסור
     }
     //הוא נדרך לגלות תנועה- ומגלה תנועה
     void detectMotion(){
         for (int i = 0; i <size ; i++) {
             this.listeners[i].motionDetected(123);//תומך בכמה סנסורים
+            //אנחנו לא יודעים כלום על האיברים המערך רק יודעים שהם יורשים מהאינטרפייס מושייןליסנר ויש להם את המתודה מושייןדיטקטד
         }
     }
     //האינטרפייס הזה נוצר רק בשביל מושיין סנסור, גם מבחוץ אפשר להשתמש בו אבל רק בהקשר של מושן סנסור
+    //איתו יוצרים קשר כשמשהוא קרה והוא מעביר אינפומציה
     static interface MotionListener{
         void motionDetected(int sensorId);;
     }
@@ -310,9 +323,14 @@ class View{
 }
 
 //עשו פונקציית כפתור אבל אי אפשר לדעת למה המשתמש ירצה כשילחץ על הכפתור
+//יודע רק לצייר כפתור עם כל הנתונים ולזהות שלחצו עליו
 class Button extends View{
 
     private OnClickListener listener;
+    private String text;
+    private int width, height;
+    private int color;
+    private Point position;
 
     public void setListener(OnClickListener listener) {
         this.listener = listener;
@@ -330,3 +348,30 @@ class Button extends View{
     }
 }
 
+//מה קורה שהקונסטרקטור הוא פרייבט:
+//סינגלטון
+class Dog{
+    //רוצה להבטיח שאם צריך אובייקט מסוג דוג אז יהיה לכל היותר אובייקט אחד מדוג
+    //אם צריך עוד אובייקט הוא יקבל את האובייקט ההוא
+    private static Dog d;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private Dog(){
+
+    }
+    //פונקציה סטטית מופעלת מהמחלקה
+    public static Dog getDog(){
+        if (d==null)//האם השדה הסטטי נאל אז עושים שזה לא יהיה נאל ומחזירים את הכתובת
+            d= new Dog();
+        return d;
+
+    }
+}
