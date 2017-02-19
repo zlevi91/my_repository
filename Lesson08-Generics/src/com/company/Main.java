@@ -119,16 +119,16 @@ public class Main {
         byte[] sBytes = s.getBytes();
         int length = s.length();
         int i = 0;
-        int cign = 1;
+        int sign = 1;
         if (sBytes[0] == ASCII_MINUS) {
             i++;
-            cign = -1;
+            sign = -1;
         }
         for (; i < length; i++) {
             h = h * 10 + (sBytes[i] - ASCII_0);//כיון שהקודים בטבלת אסקיי מתחילים ב48 עד 57
         }
 
-        return h * cign;
+        return h * sign;
     }
 
 
