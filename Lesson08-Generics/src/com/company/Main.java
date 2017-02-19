@@ -3,9 +3,13 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.IntSummaryStatistics;
 
 public class Main {
+
+    public static final int ASCII_0 = 48;//לפי הטבלת אסקיי
+    public static final int ASCII_9 = 57;
+    public static final int ASCII_MINUS = 45;
+
 
     public static void main(String[] args) {
         LinkedList<Dog> linkedList=new LinkedList<Dog>();
@@ -70,15 +74,65 @@ public class Main {
         char c=(char)sBytes[0];
         System.out.println(sBytes[0]);
 
+
+
+
+        // BufferedReader bufferedReader1=new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("please enter number :");
+        String s2=null;
+        try {
+            s2=bufferedReader.readLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        boolean b= isInt(s2);
+        System.out.println(b);
+        System.out.println(toInt(s2));
+
         try {
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-
     }
+
+    public static boolean isInt(String num) {
+        if (num == null || num.length() == 0)
+            return false;
+        byte[] numBytes = num.getBytes();
+        int i = 0;
+        if(numBytes[0]== ASCII_MINUS)
+            i++;
+        for (; i < numBytes.length; i++) {
+            if (numBytes[i] < ASCII_0 || numBytes[i] > ASCII_9) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int toInt(String s) {
+        int h = 0;
+        byte[] sBytes = s.getBytes();
+        int length = s.length();
+        int i = 0;
+        int cign = 1;
+        if (sBytes[0] == ASCII_MINUS) {
+            i++;
+            cign = -1;
+        }
+        for (; i < length; i++) {
+            h = h * 10 + (sBytes[i] - ASCII_0);//כיון שהקודים בטבלת אסקיי מתחילים ב48 עד 57
+        }
+
+        return h * cign;
+    }
+
+
+
 
 //מתודה גנרית
     public static <T> void fill(List<T> list, int quantity,T obj){
