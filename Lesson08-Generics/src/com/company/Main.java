@@ -1,5 +1,10 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.IntSummaryStatistics;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -22,15 +27,76 @@ public class Main {
         //String s1=strings.get(2);//פה הוא יפול כי זה לא מסןג סטרינג אלא מסוג אינט
         String s1=strings.get(0);
         System.out.println(s1);
+
+        Animal a=new Dog();
+        Dog d=(Dog)a;//יודע שהכל יהיה מסוג דוג כי עשנו המרה מאנימל לדוג
+
+        LinkedList<Animal> animals=new LinkedList<>();//אם לא כותבים כלום בסוגריים המושלשות הוא יודע שזה מסוג אנימל כי המצביע מסוג אנימל
+        animals.add(new Dog());
+        animals.add(new Dog());
+        //LinkedList <Dog> dogs = animals;//את זה אי אפשר לעשות אלא צריך ליצור רישמה חדשה כמו בשורות הבאות
+        LinkedList<Dog> dogs= new LinkedList<>();//אם רוצים שזה יהיה בתור דוג צריך לבנות רשיהמ חדשה ולא מספיק לעשות קאסטינג
+        for(int j=0;j<animals.size(); j++){
+            dogs.add((Dog)animals.get(j));//קיבלתי פויינטר לאובייקט מסוג אנימל ועושים קאסטינג לאובייקט מסוג דוג
+        }
+        //מטרה: לאפשר שהמשתנה ליסט2 יוכל להצביע לכל אובייקט מסוג ליסט וגם רוטייפס מאפשר את זה\
+        //אבל רוטייפס יכול לקלקל את האחידות של הנתונים וסימן שאלה לא
+        List<?> list2=animals;//סימן שאלה אומר כל טיפוס מהשהוא לא ידוע
+        //list2.add(new Animal());//לא מוכן לקבל את זה
+        System.out.println(list2.get(0));//את זה הוא נותן אבל הוספה הוא לא נותן לעשות כל אלא שמקבלות פרמטר הוא לא נותן
+        //ניתן למשוך איבר אבל לא להכניס איבר
+        // Pair<?,?> pair1=new Pair<Integer,Integer>();
+        //אילו המתודות שניתן לכתוב עם קאסט
+        //Integer integer=(Integer) pair1.getObject1();
+        //pair1.setObject1(integer);//זה לא אפשרי
+
+
+        BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));//עוזר לקבל קלט מהמשתמש
+        System.out.println("please enter your name:");
+        try {
+            //String name=bufferedReader.readLine();
+            //System.out.println("your name is: "+name);
+            String ageAsString= bufferedReader.readLine();
+            int age=Integer.valueOf(ageAsString);
+            System.out.println("your age is: "+ age);
+        } catch (IOException e) {
+            System.out.println("error reading...");
+        } catch (NumberFormatException exception){
+            System.out.println("must enter an integer");
+        }
+
+        String s="hello";
+        byte[] sBytes= s.getBytes();
+        char c=(char)sBytes[0];
+        System.out.println(sBytes[0]);
+
+        try {
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
+//מתודה גנרית
+    public static <T> void fill(List<T> list, int quantity,T obj){
+        //מקבלת רשימה, כמות ואיזה שהוא אובייקט ומוסיפה את אוביגי לרשימה
+        for (int i = 0; i <quantity ; i++) {
+            list.add(obj);
+        }
+    }
+
+}
+class Animal{
 
 }
 
-class Dog{
+class Dog extends Animal{
 
 }
 
-class Cat{
+class Cat extends Animal{
 
 }
