@@ -19,9 +19,12 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
+            <state relative-caret-position="427">
               <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
-              <folding />
+              <folding>
+                <element signature="method#mergeLinkedListOfLinkedList2#0;class#Main#0" expanded="false" />
+                <element signature="method#merge#0;class#Main#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -550,15 +553,15 @@
       <updated>1487234379623</updated>
       <workItem from="1487234382727" duration="15441000" />
       <workItem from="1487486375843" duration="197000" />
-      <workItem from="1487573933525" duration="3273000" />
+      <workItem from="1487573933525" duration="4465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18911000" />
+    <option name="totallyTimeSpent" value="20103000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1924" height="1056" extended-state="0" />
+    <frame x="-8" y="0" width="1924" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -613,7 +616,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="90" lean-forward="false" selection-start-line="22" selection-start-column="90" selection-end-line="22" selection-end-column="90" />
-          <folding />
+          <folding>
+            <element signature="method#mergeLinkedListOfLinkedList2#0;class#Main#0" expanded="false" />
+            <element signature="method#merge#0;class#Main#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -637,7 +643,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="90" lean-forward="false" selection-start-line="22" selection-start-column="90" selection-end-line="22" selection-end-column="90" />
-          <folding />
+          <folding>
+            <element signature="method#mergeLinkedListOfLinkedList2#0;class#Main#0" expanded="false" />
+            <element signature="method#merge#0;class#Main#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -687,9 +696,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
+        <state relative-caret-position="427">
           <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
-          <folding />
+          <folding>
+            <element signature="method#mergeLinkedListOfLinkedList2#0;class#Main#0" expanded="false" />
+            <element signature="method#merge#0;class#Main#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

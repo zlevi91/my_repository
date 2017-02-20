@@ -43,7 +43,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-              <folding />
+              <folding>
+                <element signature="e#3433#3434#0" expanded="false" />
+                <element signature="e#3460#3461#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -634,7 +637,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#3433#3434#0" expanded="false" />
+            <element signature="e#3460#3461#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -666,7 +672,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#3433#3434#0" expanded="false" />
+            <element signature="e#3460#3461#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
