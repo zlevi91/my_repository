@@ -27,7 +27,7 @@ public class User {
         byte[] sBytes = userName.getBytes();
         for (int i = 0; i <sBytes.length ; i++) {
             if(sBytes[0] < ASCII_a && sBytes[0] > ASCII_z){
-                
+
             }
 
         }

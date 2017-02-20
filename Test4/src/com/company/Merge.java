@@ -89,7 +89,7 @@ public class Merge {
             list.valueList=node1;
             list.nextList=list.nextList.nextList;
             list=list.nextList;
-            sortKlists1(list);
+            sortKlists2(list);
         }
         return list.valueList;
     }

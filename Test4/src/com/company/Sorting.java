@@ -5,7 +5,7 @@ package com.company;
  */
 public class Sorting {
 
-    static void bubbleSortLinkedList(Merge.Node list){
+    /*static void bubbleSortLinkedList(Merge.Node list){
         int upTo=0;
         Merge.Node listezer=list;
         Merge.Node ezer=list;
@@ -28,5 +28,5 @@ public class Sorting {
             }
             upTo--;
         }
-    }
+    }*/
 }
