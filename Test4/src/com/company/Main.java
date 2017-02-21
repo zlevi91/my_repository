@@ -1,9 +1,148 @@
 package com.company;
 
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
+
+        int k=7;
+        int n=20;
+        Integer[][] matrix= new Integer[k][];
+        Random random=new Random(System.currentTimeMillis());
+        for (int i = 0; i <k ; i++) {
+            Integer[] sorted=new Integer[n];//יוצר את הגודל של השורות
+            int x=10;
+            for (int j = 0; j <n ; j++) {
+                int r=random.nextInt(9);//יוצר מערך ממוין מהתחלה בהתחלה מוסיפים 0 אחכ מוסיפים את התא הקודם למספר הרנדומלי שהוגרל
+                sorted[j]=x+r;
+                x=sorted[j];
+            }
+            matrix[i]=sorted;
+            //Arrays.sort(sorted);//מיון מובנה של גאווה
+
+        }
+
+
+
+       // printMatrix(matrix);
+       // mergeSortedArrays(matrix);
+        Node<Integer> n1 = new Node<>(18);
+        Node<Integer> n2 = new Node<>(8);
+        Node<Integer> n3 = new Node<>(19);
+        Node<Integer> n4 = new Node<>(21);
+        Node<Integer> n5 = new Node<>(3);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+
+        Node sorted=bubbleSort(n1);
+        printLinkedList(sorted);
+
+
+
+
+    }
+
+
+    //לאלמנט יש את הפרטים מאיפה המינימום הגיע
+    static void mergeSortedArrays(Integer[][] matrix){
+        Element[] firstOfEach=new Element[matrix.length];//לוקח את הראשון מכל רשימה מ0 עד הלנג לוקח את הטור הראשון
+        for (int i = 0; i <matrix.length ; i++) {//קי איטרציות
+            firstOfEach[i]=new Element(matrix[i][0],i,0);
+        }
+        //o(k)+o(nklogk)=o(nklogk)
+        MinHeap minHeap= new MinHeap(firstOfEach);//קיי איטרציות
+        //לעשות ללואה על הגודל של הערימה כי עובדים עד שהערימה מתרוקנת
+        while (minHeap.getSize()>0){//בכל איטרציה נוציא את המינימום ונכניס איבר חדש ובסוף רק מוציאים איברים ואין מה להכניס
+            Element minElement=(Element) minHeap.extractMin();//הוצאנו לפה את האיבר הכי קטן לוג קיי איטרציות
+            System.out.print(minElement.value+" ");//זה בטוח האיבר הכי קטן
+            if(minElement.col< matrix[minElement.row].length-1){
+                Element element=new Element(matrix[minElement.row][minElement.col+1],
+                        minElement.row, minElement.col+1);
+                minHeap.insert(element);//לוג קיי איטרציות
+            }
+        }
+        System.out.println();
+
+    }
+
+
+
+    //פונקציית הדפסה
+    static void printMatrix(Integer[][] matrix){
+        for (int i = 0; i <matrix.length ; i++) {
+            for (int j = 0; j <matrix[i].length ; j++) {
+                System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println();
+
+        }
+    }
+
+    static Node<Integer> bubbleSort(Node<Integer> node){
+        Node<Integer> anchor=new Node(123);//נאד פקטיבי שהנקסט שלו זה נאד
+        anchor.next=node;
+        boolean isSorted=false;
+        int size=0;
+        Node<Integer> current=node;
+        while (current!=null){
+            size++;
+            current=current.next;
+        }
+        int upTo=size-1;
+        current=anchor.next;//לאיבר הראשון של נאד
+        Node<Integer> previous=anchor;//מצביע על הקודם, קורנט הוא אחד אחריו
+        while(!isSorted){
+            isSorted=true;
+            for (int i = 0; i <upTo ; i++) {
+                if(current.value>current.next.value){
+                    Node<Integer> temp=current.next.next;
+                    current.next.next=current;
+                    previous.next=current.next;
+                    current.next=temp;
+                    isSorted=false;
+                }
+                previous=previous.next;//מקדמים לפי הפריביוס כי ממנו זה תמיד מסודר גם אם הייתה החלפה וגם אם לא
+                current=previous.next;
+            }
+            upTo--;
+            previous=anchor;
+            current=previous.next;
+        }
+        return anchor.next;
+    }
+
+    private static void checkMinHeap() {
+        Integer[] nums=new Integer[1000];
+        Random random=new Random(System.currentTimeMillis());
+        Integer min=Integer.MAX_VALUE;
+        for (int i = 0; i <nums.length ; i++) {
+            nums[i]=random.nextInt(1000);
+            if (nums[i]<min)
+                min=nums[i];
+        }
+        MinHeap minHeap=new MinHeap(nums);
+        if(min!=minHeap.getMin()||min!=minHeap.extractMin()){//קודם קוראים לגאט מין כיון שאם היינו קוראים הפוך אז באקסטרקט מין היה שולף את האיבר והגטמין היה מחזיר את האיבר הבא
+            System.out.println("extractMin or getMin error");
+        }
+        minHeap.insert(random.nextInt(1000));
+        minHeap.extractMin();
+        minHeap.insert(random.nextInt(1000));
+        minHeap.extractMin();
+        minHeap.insert(random.nextInt(1000));
+        minHeap.extractMin();
+        minHeap.extractMin();
+        minHeap.extractMin();
+        minHeap.extractMin();
+        System.out.println(MinHeap.isValidMinHeap(minHeap.arr, 0, minHeap.getSize()));//בדיקה שהמחלקה שלנו בסדר
+    }
+
+    private static void generateLinkedListOfLists() {
         Node<Integer> n1 = new Node<>(5);
         Node<Integer> n2 = new Node<>(8);
         Node<Integer> n3 = new Node<>(9);
@@ -51,7 +190,6 @@ public class Main {
 
         Node<Integer> merged = mergeLinkedListOfLinkedList2(head1);
         printLinkedList(merged);
-
     }
 
 
@@ -120,7 +258,7 @@ public class Main {
         return anchor.next;
     }
 
-    
+
 
 
 }
