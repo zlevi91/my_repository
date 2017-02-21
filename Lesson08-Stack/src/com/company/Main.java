@@ -20,5 +20,18 @@ public class Main {
         }
     }
 
-    
+    // להוציא את המופע שלו במחסנית
+    public static void remove(Stack stack,Object obj){
+        Stack stack1=new ArrStack();
+        Object o=null;
+        while (!stack.isEmpty()){
+            o=stack.pop();
+            if(!(o==obj)){
+                stack1.push(o);
+            }
+        }
+        while (!stack1.isEmpty())
+            stack.push(stack1.pop());
+
+    }
 }
