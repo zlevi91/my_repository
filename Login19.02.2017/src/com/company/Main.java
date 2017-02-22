@@ -40,7 +40,7 @@ public class Main {
                     String confirmPassword = bufferedReader.readLine();
                     checkP = checkingPassWord(password,confirmPassword);
                 }
-                add(userN)
+                add(users);
             break ;
             case "2":
                 break;

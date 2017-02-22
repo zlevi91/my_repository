@@ -34,4 +34,21 @@ public class Main {
             stack.push(stack1.pop());
 
     }
+
+    public static void remove2(Stack stack,Object obj){
+        Stack temp=new ArrStack();
+        while (!stack.isEmpty()){
+            Object o=stack.pop();
+            if(!obj.equals(o)){
+                temp.push(o);
+                break;
+            }
+        }
+        while (!temp.isEmpty())
+            stack.push(temp.pop());
+    }
+
+    public void sortStack(Stack<Comparable> stack){
+
+    }
 }
