@@ -129,7 +129,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lesson09- Java Collections" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Test5" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
@@ -527,12 +527,12 @@
       <updated>1487684330100</updated>
       <workItem from="1487684333124" duration="1586000" />
       <workItem from="1487745254370" duration="1789000" />
-      <workItem from="1488098733781" duration="791000" />
+      <workItem from="1488098733781" duration="1922000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4166000" />
+    <option name="totallyTimeSpent" value="5297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1924" height="1056" extended-state="0" />
