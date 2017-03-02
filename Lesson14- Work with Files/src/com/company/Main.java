@@ -73,6 +73,7 @@ public class Main {
 
 
         whiteInTxtInt();
+            reverseWords(file);
         }
 
     }
@@ -139,6 +140,60 @@ public class Main {
 //הפונקציה תקבל פרמטר ק ותצטרך להחזיר מערך של ק האיברים הכי גדולים בקובץ
 //פונקציה שמקבלת סטרינג וכותבת אותה לקובץ
         return 1;
+    }
+    //רוורס לכל מילה בקובץ
+    //בוואן בית יש ערך של בית אחד כל פעם
+    //בצאר סי יש כל פעם את התו הבא
+    //עושים עוד פור בשורה בסוף הטראי כדי שיכניס לנו גם את המילה האחרונה
+    public static void reverseWords(File file){
+        File tempFile = new File("C:\\New folder\\temp.txt");
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        try{
+            inputStream = new FileInputStream(file);
+            outputStream = new FileOutputStream(tempFile);
+            char[] chars = new char[50];
+            int wordLength = 0;
+            int oneByte;
+            while((oneByte = inputStream.read()) != -1){
+                byte b = (byte)oneByte;
+                char c = (char)b;
+                if(c == ' '){
+                    for (int i = wordLength-1; i >= 0; i--) {
+                        outputStream.write(chars[i]);
+                    }
+                    outputStream.write(' ');
+                    wordLength = 0;
+
+                }else{
+                    chars[wordLength] = c;
+                    wordLength++;
+                }
+            }
+            for (int i = wordLength-1; i >= 0; i--) {
+                outputStream.write(chars[i]);
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(inputStream != null)
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if(outputStream != null)
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+
     }
 
     }
