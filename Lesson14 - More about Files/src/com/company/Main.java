@@ -83,7 +83,7 @@ public class Main {
                 }
             }
         }
-    
+
 
     //פונקציה שמחזירה את הפייל הכי גדול בתיקיה
     public static File getLargestFile(File file){
