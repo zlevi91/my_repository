@@ -35,7 +35,6 @@ public class Main {
                 }
         }
 
-
         //קריאה מהקובץ
         InputStream inputStream=null;
         try{
@@ -64,21 +63,16 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            if(inputStream!=null)
+            if (inputStream != null)
                 try {
                     inputStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
-        whiteInTxtInt();
+            whiteInTxtInt();
             reverseWords(file);
         }
-
     }
-
-
 
     public static void whiteInTxtInt() {
         int num;
@@ -121,9 +115,9 @@ public class Main {
         int max = 0;
         try {
             InputStream inputStream = new FileInputStream(file);
-             //input strem.read=מכניסה לתוך הבאפר ומחזירה לאינט כמה קראה
+            //input strem.read=מכניסה לתוך הבאפר ומחזירה לאינט כמה קראה
             while ((actuallyRead = inputStream.read(buffer)) != -1) {
-                if(actuallyRead!=4)
+                if (actuallyRead != 4)
                     throw new InvalidParameterException("עבדת עלי זה בכלל לא מספרים");//אם הוא לא כפולות של 4 אז בסוף אם הוא יתן פחות מ4 זה אומר שזה לא אינט
                 b = ByteBuffer.wrap(buffer).getInt();
                 if (b > max)
@@ -245,6 +239,7 @@ public class Main {
         }
         return null;
     }
+
 
     }
 
