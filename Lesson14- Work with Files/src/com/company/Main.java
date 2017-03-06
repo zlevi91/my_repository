@@ -196,6 +196,56 @@ public class Main {
 
     }
 
+    //מציאת קיי המספרים הגדולים במערך
+    static int[] kBiggest(int k) throws FileNotFoundException {
+        File filet = new File("C:\\Users\\Raitan\\Desktop\\temp6.txt");
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        byte[] buffer=new byte[4];
+        try{
+            outputStream=new FileOutputStream(filet);
+            inputStream=new FileInputStream(filet);
+            Random random = new Random(System.currentTimeMillis());
+            for (int i = 0; i < 30; i++) {
+                int rnd = random.nextInt(50);
+                System.out.println(rnd);
+                ByteBuffer.wrap(buffer).putInt(rnd);
+                outputStream.write(buffer);
+            }
+            int []arr= new int[k];
+            for (int i = 0; i < k;  arr[i++] = 0);
+            int actuallyRead;
+
+            while ((actuallyRead=inputStream.read(buffer))!=-1){
+                if(actuallyRead!=4)
+                    throw new InvalidParameterException();
+                int temp=ByteBuffer.wrap(buffer).getInt();
+                int min = Integer.MAX_VALUE;
+                int pos = 0;
+                for (int i = 0; i < k; i++) {
+                    if(arr[i]<min){
+                        min = arr[i];
+                        pos = i;
+                    }
+                }
+                if(min < temp){
+                    arr[pos] = temp;
+                }
+            }
+            return arr;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(outputStream != null)
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+        return null;
+    }
+
     }
 
 
