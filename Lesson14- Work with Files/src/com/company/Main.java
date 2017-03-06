@@ -161,7 +161,7 @@ public class Main {
 
 /*3.	הפונקציה תקבל פרמטר k ותצתרך להחזיר מערך של k האינטים הכי גדולים בקובץ.*/
 static int[] kBiggest(int k) throws FileNotFoundException {
-    File filet = new File("C:\\Users\\hackeru\\Documents\\sivan shafrir\\temp6.txt");
+    File filet = new File("C:\\Users\\hackeru\\Documents\\zofiya\\temp6.txt");
     OutputStream outputStream = null;
     InputStream inputStream = null;
     byte[] buffer=new byte[4];
