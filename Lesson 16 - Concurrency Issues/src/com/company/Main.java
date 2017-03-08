@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main {
 
     public static void main(String[] args) {
+
         /*Map<String, String> users = new HashMap<>();
         String userName = "elad";
         String password = "12345";
@@ -81,25 +82,14 @@ public class Main {
         new Player(barrier, "Sapir").start();
         new Player(barrier, "Zofiya").start();*/
 
-
-
     }
-
-
-
-    //public static void stam() throws MyException1, MyException2 {
+   //public static void stam() throws MyException1, MyException2 {
     public static void stam() throws Exception {
         if(5<6)
             throw new MyException1();
         else
             throw new MyException2();
-
-
-
     }
-
-
-
 }
 
 
