@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        function btnTest(operator) {
+/*            $.get("/MainServlet?param1=4&param2=7&operator=plus", function (data,status) {
+                if(status=="success")
+                    if(data.length>0)
+                        $("#divResult").html(data);
+
+
+            })*/
+
+/*            var test=$("#txtTest").val();
+            alert(test)*/
+
+            var p1=$("#txtParam1").val();
+            var p2=$("#txtParam2").val();
+
+            if(operator=="div" && parseInt(p2)==0){
+                $("#divResult").html("error!!! division by zero");
+                return;
+            }
+
+            $.get("/MainServlet?param1="+p1+"&param2="+p2+"&operator="+operator,function (data,status) {
+                if(status=="success")
+                    if(data.length>0)
+                        $("#divResult").html(data);
+            })
+
+        }
+    </script>
+</head>
+<body>
+    <h1>welcome</h1>
+    <input type="text" id="txtParam1">
+    <input type="text" id="txtParam2">
+    <input type="button" value="plus" onclick="btnTest('plus')">
+    <input type="button" value="minus" onclick="btnTest('minus')">
+    <input type="button" value="div" onclick="btnTest('div')">
+    <input type="button" value="mult" onclick="btnTest('mult')">
+    <div id="#divResult"></div>
+<br>
+<div id="divResult"></div>
+</body>
+</html>
